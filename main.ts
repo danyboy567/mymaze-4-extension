@@ -1,8 +1,8 @@
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     info.changeScoreBy(-1)
     tiles.setTileAt(location, assets.tile`transparency16`)
-    mySprite.sayText("Ill be more careful next time")
-    mySprite.startEffect(effects.fire)
+    mySprite.sayText("Ill be more careful next time", 2500, false)
+    mySprite.startEffect(effects.fire, 2500)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     hasKey = true
@@ -11,8 +11,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     info.changeScoreBy(1)
     tiles.setTileAt(location, assets.tile`transparency16`)
-    mySprite.sayText("Yay")
-    mySprite.startEffect(effects.spray)
+    mySprite.sayText("Yay", 800, false)
+    mySprite.startEffect(effects.spray, 800)
 })
 function intro () {
     scene.setBackgroundImage(img`
@@ -144,11 +144,13 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorClosedSouth, function
         tiles.setTileAt(location, assets.tile`transparency16`)
         tiles.setWallAt(tiles.getTileLocation(7, 1), false)
     } else {
-        mySprite.sayText("This door is locked")
+        mySprite.sayText("This door is locked", 2500, false)
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (sprite, location) {
     tiles.setCurrentTilemap(list[1])
+    info.stopCountdown()
+    tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark4)
 })
 let list: tiles.TileMapData[] = []
 let mySprite: Sprite = null
