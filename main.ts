@@ -148,14 +148,27 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorClosedSouth, function
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (sprite, location) {
-    tiles.setCurrentTilemap(list[1])
-    info.stopCountdown()
+    if (inShop) {
+        tiles.setCurrentTilemap(list[level])
+        inShop = false
+        info.startCountdown(20)
+    } else {
+        level += 1
+        inShop = true
+        tiles.setCurrentTilemap(list[0])
+        info.stopCountdown()
+    }
     tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark4)
 })
-let list: tiles.TileMapData[] = []
 let mySprite: Sprite = null
+let list: tiles.TileMapData[] = []
 let hasKey = false
+let level = 0
+let inShop = false
+inShop = false
+level = 1
 hasKey = false
+list = [tilemap`level15`, tilemap`level1`, tilemap`level16`]
 intro()
 pause(100)
 scene.setBackgroundImage(img`
@@ -282,7 +295,7 @@ scene.setBackgroundImage(img`
     `)
 info.setScore(0)
 scene.setBackgroundColor(11)
-tiles.setCurrentTilemap(tilemap`level1`)
+tiles.setCurrentTilemap(list[1])
 mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
@@ -301,11 +314,10 @@ mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-tiles.placeOnRandomTile(mySprite, sprites.dungeon.greenOuterNorth0)
+tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark4)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 info.startCountdown(20)
-list = [tilemap`level1`, tilemap`level15`, tilemap`level16`]
 forever(function () {
     music.play(music.stringPlayable("E B C5 A B G A F ", 120), music.PlaybackMode.UntilDone)
 })
