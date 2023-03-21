@@ -1,8 +1,8 @@
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     info.changeScoreBy(-1)
     tiles.setTileAt(location, assets.tile`transparency16`)
-    mySprite.sayText("Ill be more careful next time")
-    mySprite.startEffect(effects.fire)
+    mySprite.sayText("Ill be more careful next time", 2500, false)
+    mySprite.startEffect(effects.fire, 2500)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     hasKey = true
@@ -11,8 +11,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     info.changeScoreBy(1)
     tiles.setTileAt(location, assets.tile`transparency16`)
-    mySprite.sayText("Yay")
-    mySprite.startEffect(effects.spray)
+    mySprite.sayText("Yay", 800, false)
+    mySprite.startEffect(effects.spray, 800)
 })
 function intro () {
     scene.setBackgroundImage(img`
@@ -144,16 +144,31 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorClosedSouth, function
         tiles.setTileAt(location, assets.tile`transparency16`)
         tiles.setWallAt(tiles.getTileLocation(7, 1), false)
     } else {
-        mySprite.sayText("This door is locked")
+        mySprite.sayText("This door is locked", 2500, false)
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (sprite, location) {
-    tiles.setCurrentTilemap(list[1])
+    if (inShop) {
+        tiles.setCurrentTilemap(list[level])
+        inShop = false
+        info.startCountdown(20)
+    } else {
+        level += 1
+        inShop = true
+        tiles.setCurrentTilemap(list[0])
+        info.stopCountdown()
+    }
+    tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark4)
 })
-let list: tiles.TileMapData[] = []
 let mySprite: Sprite = null
+let list: tiles.TileMapData[] = []
 let hasKey = false
+let level = 0
+let inShop = false
+inShop = false
+level = 1
 hasKey = false
+list = [tilemap`level15`, tilemap`level1`, tilemap`level16`]
 intro()
 pause(100)
 scene.setBackgroundImage(img`
@@ -280,7 +295,7 @@ scene.setBackgroundImage(img`
     `)
 info.setScore(0)
 scene.setBackgroundColor(11)
-tiles.setCurrentTilemap(tilemap`level1`)
+tiles.setCurrentTilemap(list[1])
 mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
@@ -299,11 +314,10 @@ mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-tiles.placeOnRandomTile(mySprite, sprites.dungeon.greenOuterNorth0)
+tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark4)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 info.startCountdown(20)
-list = [tilemap`level1`, tilemap`level15`, tilemap`level16`]
 forever(function () {
     music.play(music.stringPlayable("E B C5 A B G A F ", 120), music.PlaybackMode.UntilDone)
 })
