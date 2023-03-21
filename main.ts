@@ -148,7 +148,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorClosedSouth, function
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (sprite, location) {
-    game.gameOver(true)
+    tiles.setCurrentTilemap(tilemap`level6`)
 })
 let mySprite: Sprite = null
 let hasKey = false

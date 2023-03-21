@@ -8,6 +8,8 @@ namespace myTiles {
     export const tile2 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile3 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile5 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -106,6 +108,25 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, [myTiles.transparency16], TileScale.Sixteen);
+            case "level6":
+            case "level6":return tiles.createTilemap(hex`1000100001010101010101020101010102010101010101010101010201010101020101010301010101010102020202020202010102010101010101020101010101020101020102020202020201010101010201010201020101010101010101010102010102010201010202020202010101020101020102010102010101010202010201010202020101020102010101020102050201010201010201020202020201020102010102010102010101010101010201020101020101020202020202020202010201010201010102010101010101010102010102020202020101010101010202020101010101010101010101010102020401010101010101010101010101010101`, img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, [myTiles.transparency16,sprites.dungeon.greenOuterEast0,sprites.dungeon.darkGroundNorthWest0,sprites.dungeon.chestClosed,myTiles.tile5,sprites.dungeon.greenSwitchUp], TileScale.Sixteen);
         }
         return null;
     })
@@ -119,6 +140,8 @@ namespace myTiles {
             case "tile2":return tile2;
             case "myTile1":
             case "tile3":return tile3;
+            case "myTile3":
+            case "tile5":return tile5;
         }
         return null;
     })
