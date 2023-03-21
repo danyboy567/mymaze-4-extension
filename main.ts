@@ -302,6 +302,7 @@ tiles.placeOnRandomTile(mySprite, sprites.dungeon.greenOuterNorth0)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 info.startCountdown(20)
+let list = [tilemap`level1`, tilemap`level15`]
 forever(function () {
     music.play(music.stringPlayable("E B C5 A B G A F ", 120), music.PlaybackMode.UntilDone)
 })
