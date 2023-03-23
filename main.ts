@@ -222,7 +222,7 @@ inShop = false
 level = 1
 hasKey = false
 list = [tilemap`level15`, tilemap`level1`, tilemap`level16`]
-items = [sprites.create(img`
+let bowandArrow = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -239,7 +239,8 @@ items = [sprites.create(img`
     . . . . . e . d . . . . . . . . 
     . . . . . . d . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.weapon), 1, 0]
+    `, SpriteKind.weapon)
+items = [bowandArrow, 1, 0]
 intro()
 pause(100)
 scene.setBackgroundImage(img`
