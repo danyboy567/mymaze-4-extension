@@ -17,38 +17,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, lo
     mySprite.sayText("Yay", 800, false)
     mySprite.startEffect(effects.spray, 800)
 })
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (mySprite.tileKindAt(TileDirection.Top, assets.tile`myTile2`)) {
-        while (check != 0 && check != 1) {
-            check = game.askForNumber("Are you sure you want to buy a sword? 1 (yes) 2 (cancel)")
-        }
-    }
-    if (info.score() > -1) {
-        while (check != 0 && check != 1) {
-            check = game.askForNumber("Are you sure you want to buy a sword? 1 (yes) 2 (cancel)")
-        }
-    }
-    if (check == 1) {
-        mySprite2 = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . b b b . . . . . . . . . 
-            . . . . b c . . . . . . e e e . 
-            . . . . b . e . . . e e . . d . 
-            . . . . . . . e e e . . . d . . 
-            . . . . . . . e e . . . d . . . 
-            . . . . . . . e . e . d . . . . 
-            . . . . . . e . . . d . . . . . 
-            . . . . . . e . . d . . . . . . 
-            . . . . . e . . d . . . . . . . 
-            . . . . . e . d . . . . . . . . 
-            . . . . . e d . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.weapon)
-    }
-})
+
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark0, function (sprite, location) {
 	
 })
