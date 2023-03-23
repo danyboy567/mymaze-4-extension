@@ -344,6 +344,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark2, function (spr
             }
         }
     }
+    pause(300)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (sprite, location) {
     if (inShop) {
