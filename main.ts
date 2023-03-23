@@ -17,10 +17,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, lo
     mySprite.sayText("Yay", 800, false)
     mySprite.startEffect(effects.spray, 800)
 })
-
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark0, function (sprite, location) {
-	
-})
 function intro () {
     scene.setBackgroundImage(img`
         1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -152,6 +148,13 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorClosedSouth, function
         tiles.setWallAt(tiles.getTileLocation(7, 1), false)
     } else {
         mySprite.sayText("This door is locked", 2500, false)
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
+    mySprite.sayText("\"B\" to interact", 100, false)
+    if (controller.B.isPressed()) {
+        game.splash("Welcome, Player, to my helpful shop.")
+        game.splash("Feel free to buy whichever items you desire")
     }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (sprite, location) {
@@ -363,24 +366,6 @@ tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark4)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 info.startCountdown(20)
-let mySprite2 = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
 forever(function () {
     music.play(music.stringPlayable("E B C5 A B G A F ", 120), music.PlaybackMode.UntilDone)
 })
