@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const shopKeeper = SpriteKind.create()
+    export const weapon = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
     info.changeScoreBy(-1)
@@ -21,7 +22,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sp
     if (inShop) {
         if (game.ask("Do you want to buy this bow? A=Yes B=No")) {
             if (-1 < info.score()) {
-                itemInHand = 0
+                itemInHand = items[0]
             }
         }
     }
@@ -210,8 +211,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (spr
     tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark4)
 })
 let shopKeeper_: Sprite = null
-let itemInHand = 0
+let itemInHand: Sprite = null
 let mySprite: Sprite = null
+let items: Sprite[] = []
 let list: tiles.TileMapData[] = []
 let hasKey = false
 let level = 0
@@ -220,6 +222,24 @@ inShop = false
 level = 1
 hasKey = false
 list = [tilemap`level15`, tilemap`level1`, tilemap`level16`]
+items = [sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . d d d . . . . . . . . . 
+    . . . . d e . . . . . . e e . . 
+    . . . . d . e . . . e e . . d . 
+    . . . . . . . e . e . . . d . . 
+    . . . . . . . . e . . . d . . . 
+    . . . . . . . e . e . d . . . . 
+    . . . . . . e . . . d . . . . . 
+    . . . . . . e . . d . . . . . . 
+    . . . . . e . . d . . . . . . . 
+    . . . . . e . d . . . . . . . . 
+    . . . . . . d . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.weapon), 1, 0]
 intro()
 pause(100)
 scene.setBackgroundImage(img`
