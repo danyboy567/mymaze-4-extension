@@ -329,6 +329,13 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorClosedSouth, function
         mySprite.sayText("This door is locked", 2500, false)
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
+    mySprite.sayText("\"B\" to interact", 100, false)
+    if (controller.B.isPressed()) {
+        game.splash("Welcome, Player, to my glorious shop.")
+        game.splash("Feel free to purchase anything you desire. ")
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (sprite, location) {
     if (inShop) {
         if (game.ask("Do you want to leave the shop? A=Yes B=No")) {
