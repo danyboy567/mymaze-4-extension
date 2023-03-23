@@ -336,6 +336,15 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, l
         game.splash("Feel free to purchase anything you desire. ")
     }
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark2, function (sprite, location) {
+    if (inShop) {
+        if (game.ask("Do you want to buy this bow? A=Yes B=No")) {
+            if (-1 < info.score()) {
+                itemInHand = weapons[0]
+            }
+        }
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (sprite, location) {
     if (inShop) {
         if (game.ask("Do you want to leave the shop? A=Yes B=No")) {
