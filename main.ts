@@ -172,7 +172,6 @@ function intro () {
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.weapon)
     weapons = sprites.allOfKind(SpriteKind.Player)
-    intro()
     pause(100)
     scene.setBackgroundImage(img`
         8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888b888886888888588888888888888b8888888888888
@@ -391,6 +390,7 @@ let level = 0
 let inShop = false
 inShop = false
 level = 1
+intro()
 forever(function () {
     music.play(music.stringPlayable("E B C5 A B G A F ", 120), music.PlaybackMode.UntilDone)
 })
