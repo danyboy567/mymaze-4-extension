@@ -17,6 +17,15 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, lo
     mySprite.sayText("Yay", 800, false)
     mySprite.startEffect(effects.spray, 800)
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sprite, location) {
+    if (inShop) {
+        if (game.ask("Do you want to buy this bow? A=Yes B=No")) {
+            if (-1 < info.score()) {
+                itemInHand = 0
+            }
+        }
+    }
+})
 function intro () {
     scene.setBackgroundImage(img`
         1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -201,6 +210,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (spr
     tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark4)
 })
 let shopKeeper_: Sprite = null
+let itemInHand = 0
 let mySprite: Sprite = null
 let list: tiles.TileMapData[] = []
 let hasKey = false
