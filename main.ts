@@ -14,7 +14,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, l
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (itemInHand == bowandArrow) {
-        if (mySprite.vx < 0) {
+        if (mySprite.fx < 0) {
             projectile = sprites.createProjectileFromSprite(img`
                 . . . . . . . . . . . . . . . . 
                 . . . . . . . . . . . . . . . . 
@@ -205,7 +205,6 @@ function intro () {
         . . . . . . d . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.weapon)
-    weapons = sprites.allOfKind(SpriteKind.Player)
     pause(100)
     scene.setBackgroundImage(img`
         8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888b888886888888588888888888888b8888888888888
@@ -367,10 +366,11 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile8`, function (sprite, l
     if (inShop) {
         if (game.ask("Do you want to buy this bow? A=Yes B=No")) {
             if (-1 < info.score()) {
-                itemInHand = weapons[0]
+                itemInHand = bowandArrow
             }
         }
     }
+    pause(300)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, location) {
     mySprite.sayText("\"B\" to interact", 100, false)
@@ -378,16 +378,6 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile2`, function (sprite, l
         game.splash("Welcome, Player, to my glorious shop.")
         game.splash("Feel free to purchase anything you desire. ")
     }
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorDark2, function (sprite, location) {
-    if (inShop) {
-        if (game.ask("Do you want to buy this bow? A=Yes B=No")) {
-            if (-1 < info.score()) {
-                itemInHand = weapons[0]
-            }
-        }
-    }
-    pause(300)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (sprite, location) {
     if (inShop) {
@@ -440,7 +430,6 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.floorMixed, function (spr
     tiles.placeOnRandomTile(mySprite, sprites.dungeon.floorDark4)
 })
 let shopKeeper_: Sprite = null
-let weapons: Sprite[] = []
 let list: tiles.TileMapData[] = []
 let projectile: Sprite = null
 let bowandArrow: Sprite = null
